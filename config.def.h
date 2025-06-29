@@ -102,9 +102,15 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-        { MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("$HOME/scripts/bookmarks.sh") },
-        { 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1%") },
-        { 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1%") },
+        // Custom keybinds
+        { 0, XF86XK_AudioPlay,          spawn,     SHCMD("playerctl play-pause") },
+        { 0, XF86XK_AudioNext,          spawn,     SHCMD("playerctl next") },
+        { 0, XF86XK_AudioPrev,          spawn,     SHCMD("playerctl previous") },
+        { 0, XF86XK_AudioLowerVolume,   spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1%") },
+        { 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1%") },
+        { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+        { MODKEY|ShiftMask, XK_b,       spawn,     SHCMD("$HOME/scripts/bookmarks.sh") },
+        { MODKEY|ShiftMask, XK_n,       spawn,     SHCMD("$HOME/scripts/ccna.sh") },
 };
 
 /* button definitions */

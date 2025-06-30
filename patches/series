@@ -3,3 +3,4 @@ kitty-default-terminal.patch
 meslo-nerd-font.patch
 thick-window-select-border.patch
 colorscheme.patch
+layouts-per-tag.patch

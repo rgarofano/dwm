@@ -114,6 +114,7 @@ static const Key keys[] = {
         { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
         { MODKEY|ShiftMask, XK_b,       spawn,     SHCMD("$HOME/scripts/bookmarks.sh") },
         { MODKEY|ShiftMask, XK_n,       spawn,     SHCMD("$HOME/scripts/ccna.sh") },
+        { MODKEY|ShiftMask, XK_l,       spawn,     SHCMD("i3lock-fancy") },
 };
 
 /* button definitions */

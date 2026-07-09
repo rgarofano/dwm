@@ -111,6 +111,8 @@ static const Key keys[] = {
         { 0,                            XF86XK_AudioLowerVolume, spawn,          SHCMD("pamixer -d 5 && pkill -RTMIN+10 dwmblocks") },
         { ShiftMask,                    XF86XK_AudioLowerVolume, spawn,          SHCMD("pamixer -d 1 && pkill -RTMIN+10 dwmblocks") },
         { 0,                            XF86XK_AudioMute,        spawn,          SHCMD("pamixer -t && pkill -RTMIN+10 dwmblocks") },
+        { MODKEY,                       XK_s,                    spawn,          SHCMD("maim -s | xclip -selection clipboard -t image/png") },
+        { MODKEY|ShiftMask,             XK_s,                    spawn,          SHCMD("maim $HOME/Pictures/$(date +%F-%H%M%S).png") }
 };
 
 /* button definitions */

@@ -70,6 +70,16 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *volupcmd[] = { "dwm-volume", "up", NULL };
+static const char *voldowncmd[] = { "dwm-volume", "down", NULL };
+static const char *precisevolupcmd[] = { "dwm-volume", "up", "1", NULL };
+static const char *precisevoldowncmd[] = { "dwm-volume", "down", "1", NULL };
+static const char *togglemutecmd[] = { "dwm-volume", "toggle-mute", NULL };
+static const char *playpausecmd[] = { "dwm-media", "play-pause", NULL };
+static const char *nextcmd[] = { "dwm-media", "next", NULL };
+static const char *prevcmd[] = { "dwm-media", "previous", NULL };
+static const char *screenshotcmd[] = { "dwm-capture", "screenshot", NULL };
+static const char *snippetcmd[] = { "dwm-capture", "snippet", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key                      function        argument */
@@ -106,13 +116,16 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-        { 0,                            XF86XK_AudioRaiseVolume, spawn,          SHCMD("pamixer -i 5 && pkill -RTMIN+10 dwmblocks") },
-        { ShiftMask,                    XF86XK_AudioRaiseVolume, spawn,          SHCMD("pamixer -i 1 && pkill -RTMIN+10 dwmblocks") },
-        { 0,                            XF86XK_AudioLowerVolume, spawn,          SHCMD("pamixer -d 5 && pkill -RTMIN+10 dwmblocks") },
-        { ShiftMask,                    XF86XK_AudioLowerVolume, spawn,          SHCMD("pamixer -d 1 && pkill -RTMIN+10 dwmblocks") },
-        { 0,                            XF86XK_AudioMute,        spawn,          SHCMD("pamixer -t && pkill -RTMIN+10 dwmblocks") },
-        { MODKEY,                       XK_s,                    spawn,          SHCMD("maim -s | xclip -selection clipboard -t image/png") },
-        { MODKEY|ShiftMask,             XK_s,                    spawn,          SHCMD("maim $HOME/Pictures/$(date +%F-%H%M%S).png") }
+        { 0,                            XF86XK_AudioRaiseVolume, spawn,          {.v = volupcmd } },
+        { ShiftMask,                    XF86XK_AudioRaiseVolume, spawn,          {.v = precisevolupcmd } },
+        { 0,                            XF86XK_AudioLowerVolume, spawn,          {.v = voldowncmd } },
+        { ShiftMask,                    XF86XK_AudioLowerVolume, spawn,          {.v = precisevoldowncmd } },
+        { 0,                            XF86XK_AudioMute,        spawn,          {.v = togglemutecmd } },
+        { 0,                            XF86XK_AudioPlay,        spawn,          {.v = playpausecmd } },
+        { 0,                            XF86XK_AudioNext,        spawn,          {.v = nextcmd } },
+        { 0,                            XF86XK_AudioPrev,        spawn,          {.v = prevcmd } },
+        { 0,                            XK_Print,                spawn,          {.v = screenshotcmd } },
+        { MODKEY,                       XK_s,                    spawn,          {.v = snippetcmd } },
 };
 
 /* button definitions */
